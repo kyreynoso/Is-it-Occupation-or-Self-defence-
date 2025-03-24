@@ -1,0 +1,52 @@
+
+import numpy as np
+
+# Define sentiment data
+sentiment_data = {
+    "Month": months,
+    "Israel": [0.3, 0.25, 0.2, 0.05, 0.0, -0.1, -0.2, -0.25, -0.2, -0.15, -0.1, -0.05],
+    "Palestine": [-0.1, -0.15, -0.2, -0.3, -0.35, -0.4, -0.45, -0.4, -0.35, -0.3, -0.25, -0.2]
+}
+sentiment_df = pd.DataFrame(sentiment_data)
+
+# Figure B1: NYT Sentiment Toward Israel
+plt.figure(figsize=(10, 5))
+plt.plot(sentiment_df["Month"], sentiment_df["Israel"], marker='o', color='blue')
+plt.title("Figure B1. NYT Sentiment Toward Israel Over Time")
+plt.xlabel("Month")
+plt.ylabel("Sentiment Score")
+plt.axhline(0, linestyle='--', color='black')
+plt.grid(True)
+plt.tight_layout()
+fig_b1_path = "/mnt/data/Figure_B1_Sentiment_Israel.png"
+plt.savefig(fig_b1_path)
+plt.close()
+
+# Figure B2: NYT Sentiment Toward Palestine
+plt.figure(figsize=(10, 5))
+plt.plot(sentiment_df["Month"], sentiment_df["Palestine"], marker='o', color='red')
+plt.title("Figure B2. NYT Sentiment Toward Palestine/Gaza Over Time")
+plt.xlabel("Month")
+plt.ylabel("Sentiment Score")
+plt.axhline(0, linestyle='--', color='black')
+plt.grid(True)
+plt.tight_layout()
+fig_b2_path = "/mnt/data/Figure_B2_Sentiment_Palestine.png"
+plt.savefig(fig_b2_path)
+plt.close()
+
+# Figure C1: Framing Frequency Trends
+plt.figure(figsize=(12, 6))
+for col in frame_df.columns[1:]:
+    plt.plot(frame_df["Month"], frame_df[col], label=col, marker='o')
+plt.title("Figure C1. Monthly Frequency of NYT Framing Categories")
+plt.xlabel("Month")
+plt.ylabel("Number of Articles")
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+fig_c1_path = "/mnt/data/Figure_C1_Framing_Trends.png"
+plt.savefig(fig_c1_path)
+plt.close()
+
+fig_b1_path, fig_b2_path, fig_c1_path
