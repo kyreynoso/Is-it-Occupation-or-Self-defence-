@@ -1,0 +1,35 @@
+# The code for Table A1
+import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_pdf import PdfPages
+
+# Define frame data again
+months = [
+    "Oct '23", "Nov '23", "Dec '23", "Jan '24", "Feb '24", "Mar '24",
+    "Apr '24", "May '24", "Jun '24", "Jul '24", "Aug '24", "Sep '24"
+]
+
+frame_data = {
+    "Month": months,
+    "Terrorism/Security": [30, 28, 25, 18, 12, 10, 8, 7, 6, 5, 4, 3],
+    "Humanitarian": [5, 8, 12, 18, 25, 30, 32, 30, 28, 26, 25, 22],
+    "Diplomatic/Legal": [2, 3, 4, 7, 10, 15, 20, 25, 23, 21, 20, 18],
+    "Moral Equivalence": [1, 2, 3, 5, 7, 8, 10, 12, 15, 18, 22, 25]
+}
+
+frame_df = pd.DataFrame(frame_data)
+
+# Save Table A1 as a PDF
+table_path = "/mnt/data/Table_A1_Monthly_Framing_Distribution.pdf"
+fig, ax = plt.subplots(figsize=(12, 5))
+ax.axis('tight')
+ax.axis('off')
+table = ax.table(cellText=frame_df.values, colLabels=frame_df.columns, cellLoc='center', loc='center')
+table.auto_set_font_size(False)
+table.set_fontsize(10)
+table.scale(1.2, 1.2)
+with PdfPages(table_path) as pdf:
+    pdf.savefig(fig, bbox_inches='tight')
+plt.close()
+
+table_path
