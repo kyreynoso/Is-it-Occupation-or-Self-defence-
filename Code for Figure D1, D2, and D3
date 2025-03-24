@@ -1,0 +1,64 @@
+
+
+# Simulate comparative sentiment data for President and Congress
+pres_israel = [0.45, 0.4, 0.35, 0.2, 0.15, 0.1, 0.05, 0.0, 0.05, 0.1, 0.1, 0.1]
+cong_israel = [0.4] * 12
+pres_palestine = [-0.3, -0.3, -0.25, -0.2, -0.2, -0.15, -0.1, -0.1, -0.1, -0.05, -0.05, -0.05]
+cong_palestine = [-0.3] * 12
+
+# D2: Sentiment Toward Israel – President vs. Congress
+plt.figure(figsize=(10, 5))
+plt.plot(months, pres_israel, marker='o', label='President')
+plt.plot(months, cong_israel, marker='o', label='Congress')
+plt.title("Figure D2. Sentiment Toward Israel: President vs. Congress")
+plt.xlabel("Month")
+plt.ylabel("Sentiment Score")
+plt.axhline(0, linestyle='--', color='black')
+plt.grid(True)
+plt.legend()
+plt.tight_layout()
+fig_d2_path = "/mnt/data/Figure_D2_Sentiment_Israel_President_Congress.png"
+plt.savefig(fig_d2_path)
+plt.close()
+
+# D3: Sentiment Toward Palestine – President vs. Congress
+plt.figure(figsize=(10, 5))
+plt.plot(months, pres_palestine, marker='o', color='orange', label='President')
+plt.plot(months, cong_palestine, marker='o', color='green', label='Congress')
+plt.title("Figure D3. Sentiment Toward Palestine: President vs. Congress")
+plt.xlabel("Month")
+plt.ylabel("Sentiment Score")
+plt.axhline(0, linestyle='--', color='black')
+plt.grid(True)
+plt.legend()
+plt.tight_layout()
+fig_d3_path = "/mnt/data/Figure_D3_Sentiment_Palestine_President_Congress.png"
+plt.savefig(fig_d3_path)
+plt.close()
+
+# D1: Simulated framing by actor
+frames = ["Terrorism/Security", "Humanitarian", "Diplomatic/Legal", "Moral Equivalence"]
+colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728"]
+
+# Generate dummy data per actor
+np.random.seed(42)
+israel_frames = np.random.randint(5, 35, size=(4, 12))
+palestine_frames = np.random.randint(5, 35, size=(4, 12))
+
+fig, axes = plt.subplots(2, 1, figsize=(12, 10), sharex=True)
+for idx, (data, actor) in enumerate(zip([israel_frames, palestine_frames], ["Israel", "Palestine"])):
+    for i, frame in enumerate(frames):
+        axes[idx].plot(months, data[i], marker='o', label=frame, color=colors[i])
+    axes[idx].set_title(f"NYT Framing of {actor} Over Time")
+    axes[idx].set_ylabel("Number of Articles")
+    axes[idx].legend()
+    axes[idx].grid(True)
+
+axes[1].set_xlabel("Month")
+fig.suptitle("Figure D1. NYT Framing Trends by Actor (Israel vs. Palestine)", fontsize=14)
+plt.tight_layout(rect=[0, 0, 1, 0.96])
+fig_d1_path = "/mnt/data/Figure_D1_Framing_By_Actor.png"
+plt.savefig(fig_d1_path)
+plt.close()
+
+fig_d1_path, fig_d2_path, fig_d3_path
