@@ -1,0 +1,18 @@
+# Figure D2 with enhanced color contrast for clarity
+plt.figure(figsize=(10, 5))
+plt.plot(df_sentiment["Month"], df_sentiment["NYT_Israel"], marker='o', label='NYT', color='#1f77b4')
+plt.plot(df_sentiment["Month"], df_sentiment["President_Israel"], marker='o', label='President', color='#d62728')
+plt.plot(df_sentiment["Month"], df_sentiment["Congress_Israel"], marker='o', label='Congress', color='#2ca02c')
+plt.title("Figure D2. Sentiment Toward Israel: NYT vs. President vs. Congress")
+plt.xlabel("Month")
+plt.ylabel("Sentiment Score")
+plt.xticks(rotation=45)
+plt.axhline(0, linestyle='--', color='black')
+plt.grid(True)
+plt.legend()
+plt.tight_layout()
+fig_d2_updated_color_path = "/mnt/data/Figure_D2_Updated_Contrast_Sentiment_Israel.png"
+plt.savefig(fig_d2_updated_color_path)
+plt.close()
+
+fig_d2_updated_color_path
