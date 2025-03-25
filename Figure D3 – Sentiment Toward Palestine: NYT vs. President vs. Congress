@@ -1,0 +1,18 @@
+# Figure D3 with more contrasting colors
+plt.figure(figsize=(10, 5))
+plt.plot(df_sentiment["Month"], df_sentiment["NYT_Palestine"], marker='o', label='NYT', color='#1f77b4')
+plt.plot(df_sentiment["Month"], df_sentiment["President_Palestine"], marker='o', label='President', color='#d62728')
+plt.plot(df_sentiment["Month"], df_sentiment["Congress_Palestine"], marker='o', label='Congress', color='#2ca02c')
+plt.title("Figure D3. Sentiment Toward Palestine: NYT vs. President vs. Congress")
+plt.xlabel("Month")
+plt.ylabel("Sentiment Score")
+plt.xticks(rotation=45)
+plt.axhline(0, linestyle='--', color='black')
+plt.grid(True)
+plt.legend()
+plt.tight_layout()
+fig_d3_updated_color_path = "/mnt/data/Figure_D3_Updated_Contrast_Sentiment_Palestine.png"
+plt.savefig(fig_d3_updated_color_path)
+plt.close()
+
+fig_d3_updated_color_path
