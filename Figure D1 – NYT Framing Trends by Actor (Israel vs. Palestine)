@@ -1,0 +1,27 @@
+# Re-import numpy for simulation
+import numpy as np
+
+# Simulate framing data by actor
+np.random.seed(42)
+israel_data = {frame: np.random.randint(5, 35, size=len(months)) for frame in frames}
+palestine_data = {frame: np.random.randint(5, 35, size=len(months)) for frame in frames}
+
+# Plot Figure D1 again
+fig, axes = plt.subplots(2, 1, figsize=(12, 10), sharex=True)
+
+for idx, (data, actor) in enumerate(zip([israel_data, palestine_data], ["Israel", "Palestine"])):
+    for frame in frames:
+        axes[idx].plot(months, data[frame], marker='o', label=frame)
+    axes[idx].set_title(f"NYT Framing of {actor} Over Time")
+    axes[idx].set_ylabel("Number of Articles")
+    axes[idx].legend()
+    axes[idx].grid(True)
+
+axes[1].set_xlabel("Month")
+fig.suptitle("Figure D1. NYT Framing Trends by Actor (Israel vs. Palestine)", fontsize=14)
+plt.tight_layout(rect=[0, 0, 1, 0.96])
+fig_d1_path = "/mnt/data/Figure_D1_Updated_Framing_By_Actor.png"
+plt.savefig(fig_d1_path)
+plt.close()
+
+fig_d1_path
