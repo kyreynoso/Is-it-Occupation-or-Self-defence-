@@ -1,0 +1,20 @@
+# table e1
+table_e1_path = "/mnt/data/Table_E1_Sentiment_Comparison_NYT_US_Policy.pdf"
+
+# Create table plot with updated label
+fig, ax = plt.subplots(figsize=(13, 6))
+ax.axis('tight')
+ax.axis('off')
+tbl = ax.table(cellText=df_sentiment_rounded.values,
+               colLabels=df_sentiment_rounded.columns,
+               cellLoc='center', loc='center')
+tbl.auto_set_font_size(False)
+tbl.set_fontsize(9)
+tbl.scale(1.2, 1.2)
+
+plt.title("Table E1. Monthly Sentiment Scores: NYT, President, and Congress on Israel/Palestine", pad=20)
+with PdfPages(table_e1_path) as pdf:
+    pdf.savefig(fig, bbox_inches='tight')
+plt.close()
+
+table_e1_path
