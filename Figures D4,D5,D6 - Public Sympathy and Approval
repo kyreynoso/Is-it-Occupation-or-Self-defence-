@@ -1,0 +1,72 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Create the data manually for D4-D6
+months = ["Oct '23", "Nov '23", "Dec '23", "Jan '24", "Feb '24", "Mar '24", "Apr '24", "May '24", "Jun '24", "Jul '24", "Aug '24", "Sep '24"]
+
+# D4 data: NYT sentiment vs. Public Sympathy for Palestinians
+nyt_sentiment_pal = [-0.2, -0.25, -0.3, -0.35, -0.4, -0.42, -0.45, -0.4, -0.35, -0.3, -0.25, -0.2]
+public_sympathy_pal = [25, 28, 30, 35, 40, 45, 48, 50, 49, 48, 47, 46]
+
+# D5 data: President & Congress Sentiment on Israel vs. Public Approval
+president_israel = [0.4, 0.35, 0.3, 0.25, 0.2, 0.15, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+congress_israel = [0.3, 0.25, 0.2, 0.15, 0.1, 0.05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+public_approval_israel = [65, 60, 55, 48, 42, 38, 35, 36, 37, 38, 39, 40]
+
+# D6 data: President & Congress Sentiment on Palestine vs. Public Sympathy
+president_pal = [-0.2, -0.15, -0.15, -0.1, -0.1, -0.05, -0.05, -0.05, -0.05, -0.05, -0.05, -0.05]
+congress_pal = [-0.3, -0.25, -0.25, -0.2, -0.2, -0.2, -0.15, -0.15, -0.1, -0.1, -0.1, -0.1]
+public_sympathy_pal_d6 = public_sympathy_pal  # Same as D4
+
+# Plot D4
+fig, ax1 = plt.subplots(figsize=(12, 6))
+ax2 = ax1.twinx()
+ax1.plot(months, public_sympathy_pal, color='maroon', marker='o', label='Public Sympathy')
+ax2.plot(months, nyt_sentiment_pal, color='maroon', linestyle='--', marker='s', label='NYT Sentiment')
+ax1.set_ylabel("Public Sympathy Toward Palestinians (%)", color='maroon')
+ax2.set_ylabel("NYT Sentiment Score (–1 to +1)", color='maroon')
+ax1.set_ylim(20, 55)
+ax2.set_ylim(-0.5, 0)
+ax1.set_title("Figure D4. Public Sympathy Toward Palestinians vs. NYT Sentiment (Oct 2023–Sep 2024)")
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig("/mnt/data/Figure_D4_Recreated.png")
+plt.close()
+
+# Plot D5
+fig, ax1 = plt.subplots(figsize=(12, 6))
+ax2 = ax1.twinx()
+ax1.plot(months, public_approval_israel, color='teal', marker='o', label='Public Approval')
+ax2.plot(months, president_israel, color='green', linestyle='--', marker='s', label='President Sentiment')
+ax2.plot(months, congress_israel, color='orange', linestyle='--', marker='^', label='Congress Sentiment')
+ax1.set_ylabel("Public Approval (%)", color='teal')
+ax2.set_ylabel("Sentiment Score (–1 to +1)", color='black')
+ax1.set_ylim(30, 70)
+ax2.set_ylim(-0.1, 0.5)
+ax1.set_title("Figure D5. Public Approval vs. President & Congress Sentiment on Israel (Oct 2023–Sep 2024)")
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig("/mnt/data/Figure_D5_Recreated.png")
+plt.close()
+
+# Plot D6
+fig, ax1 = plt.subplots(figsize=(12, 6))
+ax2 = ax1.twinx()
+ax1.plot(months, public_sympathy_pal_d6, color='maroon', marker='o', label='Public Sympathy')
+ax2.plot(months, president_pal, color='purple', linestyle='--', marker='s', label='President Sentiment')
+ax2.plot(months, congress_pal, color='brown', linestyle='--', marker='^', label='Congress Sentiment')
+ax1.set_ylabel("Public Sympathy (%)", color='maroon')
+ax2.set_ylabel("Sentiment Score (–1 to +1)", color='black')
+ax1.set_ylim(20, 55)
+ax2.set_ylim(-0.4, 0.1)
+ax1.set_title("Figure D6. Public Sympathy vs. President & Congress Sentiment on Palestine/Gaza (Oct 2023–Sep 2024)")
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig("/mnt/data/Figure_D6_Recreated.png")
+plt.close()
+
+[
+    "/mnt/data/Figure_D4_Recreated.png",
+    "/mnt/data/Figure_D5_Recreated.png",
+    "/mnt/data/Figure_D6_Recreated.png"
+]
